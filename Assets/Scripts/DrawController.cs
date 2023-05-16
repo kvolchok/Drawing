@@ -8,13 +8,13 @@ public class DrawController : MonoBehaviour
     private float _rayDistance = 100;
     
     private Material _cursorMaterial;
-    private LineRenderer _lineRenderer;
+    private LineRenderer _line;
     private Camera _camera;
 
     private void Awake()
     {
         _cursorMaterial = GetComponent<MeshRenderer>().material;
-        _lineRenderer = GetComponent<LineRenderer>();
+        _line = GetComponent<LineRenderer>();
         _camera = Camera.main;
     }
 
@@ -33,8 +33,8 @@ public class DrawController : MonoBehaviour
     {
         _cursorMaterial.color = color;
         
-        _lineRenderer.startColor = color;
-        _lineRenderer.endColor = color;
+        _line.startColor = color;
+        _line.endColor = color;
     }
     
     private void MoveCursorAtPoint()
@@ -47,7 +47,7 @@ public class DrawController : MonoBehaviour
         var blackboardPoint = hitInfo.point;
         transform.position = blackboardPoint;
 
-        if (Input.GetMouseButton(0) && _lineRenderer != null)
+        if (Input.GetMouseButton(0) && _line != null)
         {
             Draw(blackboardPoint);
         }
@@ -55,8 +55,8 @@ public class DrawController : MonoBehaviour
     
     private void Draw(Vector3 point)
     {
-        var index = ++_lineRenderer.positionCount - 1;
-        _lineRenderer.SetPosition(index, point);
+        var index = ++_line.positionCount - 1;
+        _line.SetPosition(index, point);
     }
 
     private void OnDisable()
