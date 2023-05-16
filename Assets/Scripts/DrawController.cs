@@ -1,15 +1,8 @@
-using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Schema;
 using UnityEngine;
 
 public class DrawController : MonoBehaviour
 {
-    [SerializeField]
-    private Collider _blackboardCollider;
-    [SerializeField]
-    private float _rayDistance = 100;
-
     [SerializeField]
     private LineRenderer _linePrefab;
 
@@ -33,11 +26,6 @@ public class DrawController : MonoBehaviour
 
     private void Update()
     {
-        if (_color == null)
-        {
-            return;
-        }
-
         if (!_isDrawing && Input.GetMouseButtonDown(0))
         {
             StartDrawing();
@@ -53,7 +41,7 @@ public class DrawController : MonoBehaviour
             return;
         }
         
-        MoveCursorAtPoint();
+        Draw();
     }
 
     private void StartDrawing()
@@ -69,25 +57,16 @@ public class DrawController : MonoBehaviour
         _isDrawing = false;
     }
 
-    private void MoveCursorAtPoint()
+    private void Draw()
     {
         var mousePosition = Input.mousePosition;
         var ray = _camera.ScreenPointToRay(mousePosition);
-        
-        if (!_blackboardCollider.Raycast(ray, out var hitInfo, _rayDistance)) return;
 
-        var blackboardPoint = hitInfo.point;
-        transform.position = blackboardPoint;
-
-        if (Input.GetMouseButton(0) && _line != null)
+        if (Physics.Raycast(ray, out var hitInfo))
         {
-            Draw(blackboardPoint);
+            var blackboardPoint = hitInfo.point;
+            var index = ++_line.positionCount - 1;
+            _line.SetPosition(index, blackboardPoint);   
         }
-    }
-    
-    private void Draw(Vector3 point)
-    {
-        var index = ++_line.positionCount - 1;
-        _line.SetPosition(index, point);
     }
 }
