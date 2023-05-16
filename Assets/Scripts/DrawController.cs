@@ -10,6 +10,9 @@ public class DrawController : MonoBehaviour
     [SerializeField]
     private MeshRenderer _cursor;
 
+    [SerializeField]
+    private float _minDrawDistance = 0.1f;
+
     private readonly List<LineRenderer> _lines = new();
 
     private Color _color;
@@ -92,7 +95,7 @@ public class DrawController : MonoBehaviour
 
     private void Draw(Vector3 currentPoint)
     {
-        if (Vector3.Distance(_lastPoint, currentPoint) < 0.1)
+        if (Vector3.Distance(_lastPoint, currentPoint) < _minDrawDistance)
         {
             return;
         }
