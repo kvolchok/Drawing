@@ -60,6 +60,11 @@ public class DrawController : MonoBehaviour
         _isDrawing = true;
     }
 
+    private void EndDrawing()
+    {
+        _isDrawing = false;
+    }
+
     private void Draw(Vector3 point)
     {
         var index = ++_line.positionCount - 1;
