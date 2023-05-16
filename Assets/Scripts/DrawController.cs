@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class DrawController : MonoBehaviour
@@ -13,7 +14,6 @@ public class DrawController : MonoBehaviour
 
     private Color _color;
     private Camera _camera;
-    private Material _cursorMaterial;
     private LineRenderer _line;
     private bool _isDrawing;
     private Vector3 _lastPoint;
@@ -23,6 +23,15 @@ public class DrawController : MonoBehaviour
         _color = color;
         _cursor.enabled = true;
         _cursor.material.color = _color;
+    }
+    
+    [UsedImplicitly]
+    public void EraseAll()
+    {
+        foreach (var line in _lines)
+        {
+            Destroy(line.gameObject);
+        }
     }
     
     private void Awake()
