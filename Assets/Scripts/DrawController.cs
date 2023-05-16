@@ -6,13 +6,14 @@ public class DrawController : MonoBehaviour
     [SerializeField]
     private LineRenderer _linePrefab;
 
-    private List<LineRenderer> _lines = new();
+    private readonly List<LineRenderer> _lines = new();
 
+    private Color _color;
     private Camera _camera;
     private Material _cursorMaterial;
     private LineRenderer _line;
-    private Color _color;
     private bool _isDrawing;
+    private Vector3 _lastPoint;
 
     public void SetColor(Color color)
     {
@@ -48,6 +49,7 @@ public class DrawController : MonoBehaviour
     {
         _line = Instantiate(_linePrefab);
         _line.material.color = _color;
+        _line.sortingOrder = _lines.Count;
         _lines.Add(_line);
         _isDrawing = true;
     }
@@ -62,11 +64,21 @@ public class DrawController : MonoBehaviour
         var mousePosition = Input.mousePosition;
         var ray = _camera.ScreenPointToRay(mousePosition);
 
-        if (Physics.Raycast(ray, out var hitInfo))
+        if (!Physics.Raycast(ray, out var hitInfo))
         {
-            var blackboardPoint = hitInfo.point;
-            var index = ++_line.positionCount - 1;
-            _line.SetPosition(index, blackboardPoint);   
+            return;
         }
+
+        var currentPoint = hitInfo.point;
+
+        if (Vector3.Distance(_lastPoint, currentPoint) < 0.1)
+        {
+            return;
+        }
+
+        var index = ++_line.positionCount - 1;
+        _line.SetPosition(index, currentPoint);
+        
+        _lastPoint = _line.GetPosition(_line.positionCount - 1);
     }
 }
