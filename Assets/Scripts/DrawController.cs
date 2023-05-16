@@ -6,6 +6,9 @@ public class DrawController : MonoBehaviour
     [SerializeField]
     private LineRenderer _linePrefab;
 
+    [SerializeField]
+    private MeshRenderer _cursor;
+
     private readonly List<LineRenderer> _lines = new();
 
     private Color _color;
@@ -18,6 +21,8 @@ public class DrawController : MonoBehaviour
     public void SetColor(Color color)
     {
         _color = color;
+        _cursor.enabled = true;
+        _cursor.material.color = _color;
     }
     
     private void Awake()
@@ -27,6 +32,22 @@ public class DrawController : MonoBehaviour
 
     private void Update()
     {
+        MoveCursor();
+    }
+
+    private void MoveCursor()
+    {
+        var mousePosition = Input.mousePosition;
+        var ray = _camera.ScreenPointToRay(mousePosition);
+
+        if (!Physics.Raycast(ray, out var hitInfo))
+        {
+            return;
+        }
+
+        var currentPoint = hitInfo.point;
+        _cursor.transform.position = currentPoint;
+        
         if (!_isDrawing && Input.GetMouseButtonDown(0))
         {
             StartDrawing();
@@ -42,15 +63,16 @@ public class DrawController : MonoBehaviour
             return;
         }
         
-        Draw();
+        Draw(currentPoint);
     }
-
+    
     private void StartDrawing()
     {
         _line = Instantiate(_linePrefab);
         _line.material.color = _color;
         _line.sortingOrder = _lines.Count;
         _lines.Add(_line);
+        
         _isDrawing = true;
     }
 
@@ -59,18 +81,8 @@ public class DrawController : MonoBehaviour
         _isDrawing = false;
     }
 
-    private void Draw()
+    private void Draw(Vector3 currentPoint)
     {
-        var mousePosition = Input.mousePosition;
-        var ray = _camera.ScreenPointToRay(mousePosition);
-
-        if (!Physics.Raycast(ray, out var hitInfo))
-        {
-            return;
-        }
-
-        var currentPoint = hitInfo.point;
-
         if (Vector3.Distance(_lastPoint, currentPoint) < 0.1)
         {
             return;
