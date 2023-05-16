@@ -4,7 +4,7 @@ using UnityEngine;
 public class LineDrawingController : MonoBehaviour
 {
     [SerializeField]
-    private List<LineDrawing> _lineDrawings;
+    private List<DrawController> _lineDrawings;
 
     public void DisableAllLineDrawings()
     {

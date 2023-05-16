@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LineDrawing : MonoBehaviour
+public class DrawController : MonoBehaviour
 {
     [SerializeField]
     private Collider _blackboardCollider;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ChalkButtonHandler : MonoBehaviour
@@ -6,17 +7,17 @@ public class ChalkButtonHandler : MonoBehaviour
     [SerializeField]
     private LineDrawingController _lineDrawingController;
     [SerializeField]
-    private LineDrawing _lineDrawing;
+    private DrawController _drawController;
 
     private void Start()
     {
         var color = GetComponent<Image>().color;
-        _lineDrawing.SetColor(color);
+        _drawController.SetColor(color);
     }
 
     public void ActivateChosenLineDrawing()
     {
         _lineDrawingController.DisableAllLineDrawings();
-        _lineDrawing.enabled = true;
+        _drawController.enabled = true;
     }
 }
