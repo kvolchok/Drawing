@@ -10,7 +10,13 @@ public class DrawController : MonoBehaviour
     private Material _cursorMaterial;
     private LineRenderer _line;
     private Camera _camera;
+    private Color _color;
 
+    public void SetColor(Color color)
+    {
+        _color = color;
+    }
+    
     private void Awake()
     {
         _cursorMaterial = GetComponent<MeshRenderer>().material;
@@ -29,14 +35,6 @@ public class DrawController : MonoBehaviour
         MoveCursorAtPoint();
     }
 
-    public void SetColor(Color color)
-    {
-        _cursorMaterial.color = color;
-        
-        _line.startColor = color;
-        _line.endColor = color;
-    }
-    
     private void MoveCursorAtPoint()
     {
         var mousePosition = Input.mousePosition;
