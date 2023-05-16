@@ -15,9 +15,9 @@ public class DrawController : MonoBehaviour
 
     private List<LineRenderer> _lines = new();
 
+    private Camera _camera;
     private Material _cursorMaterial;
     private LineRenderer _line;
-    private Camera _camera;
     private Color _color;
     private bool _isDrawing;
 
@@ -33,7 +33,40 @@ public class DrawController : MonoBehaviour
 
     private void Update()
     {
+        if (_color == null)
+        {
+            return;
+        }
+
+        if (!_isDrawing && Input.GetMouseButtonDown(0))
+        {
+            StartDrawing();
+        }
+        
+        if (_isDrawing && Input.GetMouseButtonUp(0))
+        {
+            EndDrawing();
+        }
+
+        if (!_isDrawing)
+        {
+            return;
+        }
+        
         MoveCursorAtPoint();
+    }
+
+    private void StartDrawing()
+    {
+        _line = Instantiate(_linePrefab);
+        _line.material.color = _color;
+        _lines.Add(_line);
+        _isDrawing = true;
+    }
+
+    private void EndDrawing()
+    {
+        _isDrawing = false;
     }
 
     private void MoveCursorAtPoint()
@@ -51,20 +84,7 @@ public class DrawController : MonoBehaviour
             Draw(blackboardPoint);
         }
     }
-
-    private void StartDrawing()
-    {
-        _line = Instantiate(_linePrefab);
-        _line.material.color = _color;
-        _lines.Add(_line);
-        _isDrawing = true;
-    }
-
-    private void EndDrawing()
-    {
-        _isDrawing = false;
-    }
-
+    
     private void Draw(Vector3 point)
     {
         var index = ++_line.positionCount - 1;
