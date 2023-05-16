@@ -19,8 +19,6 @@ public class DrawController : MonoBehaviour
     
     private void Awake()
     {
-        _cursorMaterial = GetComponent<MeshRenderer>().material;
-        _line = GetComponent<LineRenderer>();
         _camera = Camera.main;
     }
 
