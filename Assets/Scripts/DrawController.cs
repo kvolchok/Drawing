@@ -22,12 +22,6 @@ public class DrawController : MonoBehaviour
         _camera = Camera.main;
     }
 
-    private void OnEnable()
-    {
-        var meshRenderer = GetComponent<MeshRenderer>();
-        meshRenderer.enabled = true;
-    }
-
     private void Update()
     {
         MoveCursorAtPoint();
@@ -53,11 +47,5 @@ public class DrawController : MonoBehaviour
     {
         var index = ++_line.positionCount - 1;
         _line.SetPosition(index, point);
-    }
-
-    private void OnDisable()
-    {
-        var meshRenderer = GetComponent<MeshRenderer>();
-        meshRenderer.enabled = false;
     }
 }
