@@ -13,13 +13,23 @@ public class DrawController : MonoBehaviour
     [SerializeField]
     private float _minDrawDistance = 0.1f;
 
-    private readonly List<LineRenderer> _lines = new();
+    private List<LineRenderer> _lines = new();
 
     private Color _color;
     private Camera _camera;
     private LineRenderer _line;
     private bool _isDrawing;
     private Vector3 _lastPoint;
+
+    private void Awake()
+    {
+        _camera = Camera.main;
+    }
+
+    private void Update()
+    {
+        MoveCursor();
+    }
 
     public void SetColor(Color color)
     {
@@ -35,18 +45,10 @@ public class DrawController : MonoBehaviour
         {
             Destroy(line.gameObject);
         }
+
+        _lines = new List<LineRenderer>();
     }
     
-    private void Awake()
-    {
-        _camera = Camera.main;
-    }
-
-    private void Update()
-    {
-        MoveCursor();
-    }
-
     private void MoveCursor()
     {
         var mousePosition = Input.mousePosition;
@@ -84,7 +86,7 @@ public class DrawController : MonoBehaviour
         _line.material.color = _color;
         _line.sortingOrder = _lines.Count;
         _lines.Add(_line);
-        
+
         _isDrawing = true;
     }
 

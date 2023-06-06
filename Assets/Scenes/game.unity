@@ -264,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _linePrefab: {fileID: 4406850808930702384, guid: 754ad27024a4c48e78f869eb7c65de2c, type: 3}
   _cursor: {fileID: 4884505800770592628}
+  _minDrawDistance: 0.1
 --- !u!1 &337082457 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
@@ -310,6 +311,10 @@ PrefabInstance:
     - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Name
       value: LightBlueChalkButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3553862158798444078, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Pivot.x
@@ -433,6 +438,10 @@ PrefabInstance:
     - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Name
       value: YellowChalkButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3553862158798444078, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Pivot.x
@@ -560,6 +569,10 @@ PrefabInstance:
     - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Name
       value: VioletChalkButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3553862158798444078, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Pivot.x
@@ -782,6 +795,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenChalkButton
       objectReference: {fileID: 0}
+    - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3553862158798444078, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -981,6 +998,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpongeButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5311446910486474969, guid: 8a67756c815aeae4b8ad5150ffc5a881, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5311446910486474970, guid: 8a67756c815aeae4b8ad5150ffc5a881, type: 3}
       propertyPath: m_RaycastPadding.w
       value: 20
@@ -1031,6 +1052,10 @@ PrefabInstance:
     - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Name
       value: OrangeChalkButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3553862158798444078, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Pivot.x
@@ -1391,7 +1416,7 @@ GameObject:
   - component: {fileID: 1389451320}
   - component: {fileID: 1389451319}
   m_Layer: 5
-  m_Name: HorizontalLayout
+  m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1420,11 +1445,11 @@ RectTransform:
   m_Father: {fileID: 181643454}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -204.13, y: -180.74998}
-  m_SizeDelta: {x: 408.25, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 40, y: 0}
+  m_SizeDelta: {x: 410, y: 100}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1389451318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1600,6 +1625,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedChalkButton
       objectReference: {fileID: 0}
+    - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3553862158798444078, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1749,6 +1778,10 @@ PrefabInstance:
     - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Name
       value: BlueChalkButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553862158798444077, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3553862158798444078, guid: ede9cc26926c1514eb8715d7f22e0060, type: 3}
       propertyPath: m_Pivot.x
